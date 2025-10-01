@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            /* Applying the Lora font to the entire body */
+        }
+        
+        .w3-teal {
+            background-color: #00853E !important;
+            /* background color for the header */
+        }
+        
+        button {
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font-family: 'Lora', serif;
+            /* Applying the Lora font to buttons */
+            cursor: pointer;
+            outline: inherit;
+            margin-top: 2vh;
+            margin-bottom: 2vh;
+            font-size: 150%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <form action="/home" method="post"><button name="forwardBtn" type="submit">Home</button></form>
+        <form action="/politics" method="post"><button name="forwardBtn" type="submit">Politics</button></form>
+        <form action="/business" method="post"><button name="forwardBtn" type="submit">Business</button></form>
+        <form action="/technology" method="post"><button name="forwardBtn" type="submit">Technology</button></form>
+        <form action="/sports" method="post"><button name="forwardBtn" type="submit">Sports</button></form>
+        <form action="/entertainment" method="post"><button name="forwardBtn" type="submit">Entertainment</button></form>
+        <form action="/world" method="post"><button name="forwardBtn" type="submit">World</button></form>
+    </div>
+
+    <div id="main">
+
+        <div class="w3-teal" style="position:sticky;">
+            <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776; Categories</button>
+            <form action="/search" method="post" style="float: right;">
+                <input type="text" autocomplete="off" placeholder="Search.." id="search" name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- Your Python Flask templating loop would go here -->
+        {% for x in result %}
+        <section>
+            <h3>{{x[0]}}</h3>
+            <p>{{x[1]}} <a href={{x[2]}}>Read more...</a></p>
+            <br>
+        </section>
+        {% endfor %}
+
+
+
+    </div>
+
+
+
+
+    <script>
+        function w3_open() {
+            document.getElementById("main").style.marginLeft = "15%";
+            document.getElementById("mySidebar").style.width = "15%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
+        }
+
+        function w3_close() {
+            document.getElementById("main").style.marginLeft = "0%";
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("openNav").style.display = "inline-block";
+        }
+    </script>
+
+
+</body>
+
+</html>
